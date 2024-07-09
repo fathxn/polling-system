@@ -16,7 +16,11 @@ func NewPollRepository(db *sql.DB) domain.PollRepository {
 
 // Create implements domain.PollRepository.
 func (p *pollRepository) Create(ctx context.Context, poll *domain.Poll) error {
-	panic("unimplemented")
+	_, err := p.db.ExecContext(ctx, "INSERT INTO 'polls'")
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // Delete implements domain.PollRepository.
